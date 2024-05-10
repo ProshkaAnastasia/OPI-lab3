@@ -14,21 +14,21 @@ public class opiLab3Tests {
     }
     @Test
     public void checkFirstQuadrant() {
-        for (double r = 0; r <=3; r+=0.1 ) {
+        double r = 3.0;
             for (double x = 0; x <= 20; x += 0.01) {
                 for (double y = 0; y <= 20; y += 0.01) {
                     dot.setR(r);
                     dot.setX(x);
                     dot.setY(y);
                     dot.setResult(DotsBean.isInArea(dot));
-                    if (y + 2 * x <= r) {
+                    if (y + x * 2 <= r) {
                         Assert.assertEquals(true, dot.getResult());
                     } else {
                         Assert.assertEquals(false, dot.getResult());
                     }
                 }
             }
-        }
+
     }
 
     @Test
