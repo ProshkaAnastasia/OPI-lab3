@@ -175,7 +175,7 @@ public class DotsBean implements Serializable {
 
 
     //проверяет попадание точки в область
-    private boolean isInArea(Dot dot){
+    public static boolean isInArea(Dot dot){
         Double x = dot.getX();
         Double y = dot.getY();
         Double r = dot.getR();
