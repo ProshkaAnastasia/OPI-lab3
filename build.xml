@@ -25,7 +25,12 @@
 
     <target name="build" depends="clean,compile">
         <mkdir dir="${build}/lib"/>
-        <war destfile="${build}/lib/${ant.project.name}" webxml="${webapp}/WEB-INF/web.xml">
+        <war destfile="${build}/lib/${ant.project.name}.war" webxml="${webapp}/WEB-INF/web.xml">
+            <classes dir="${classes}"/>
+            <fileset dir="${webapp}">
+                <include name="*"/>
+            </fileset>
+            <lib dir="${libs}"/>
         </war>
     </target>
 
