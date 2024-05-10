@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://primefaces.org/ui ">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="styles/main.css"/>
+    <title>Web Lab 3</title>
+</h:head>
+
+<h:body>
+    <h1 id="my_name">Арбатова Ксения Владимировна, P3233</h1>
+    <h2 id="lab_work">Лабораторная работа 3</h2>
+    <div class="aaa">
+        <div>
+            <div class="canvasss">
+                <canvas id="canvas" width="500" height="500"/>
+                <script type="application/javascript" src="resources/js/canvas.js"></script>
+                <script type="application/javascript" src="resources/js/CanvasDrawer.js"></script>
+                <h:panelGroup id="updateCanvas">
+<!--                    перерисовывет график-->
+                    <script type="application/javascript" src="resources/js/newDotCanvas.js"/>
+                </h:panelGroup>
+            </div>
+
+        <h:form >
+            <div class="param" id="r_param">
+                <p:outputLabel value="R:"/>
+                <p:selectOneMenu id="r_menu" value="#{dotsBean.newDot.r}" widgetVar="yearWV" onchange="canvasDrawer.drawArea(PF('yearWV').getSelectedValue())">
+                    <f:selectItem itemLabel="1" itemValue="1" />
+                    <f:selectItem itemLabel="1.5" itemValue="1.5" />
+                    <f:selectItem itemLabel="2" itemValue="2"/>
+                    <f:selectItem itemLabel="2.5" itemValue="2.5"/>
+                    <f:selectItem itemLabel="3" itemValue="3"/>
+
+                    <!-- Add more select items as needed -->
+                </p:selectOneMenu>
+
+            </div>
+            <div class="paramss">
+
+            <div class="param">
+                <p:outputLabel value="Выберите Y:"/>
+                <h:inputText id="y_param"
+                             type="text"
+                             maxlength = "17"
+                             value="#{dotsBean.newDot.y}"
+                             validator="#{mobile.validateModelNo}"
+                             validatorMessage="Значение y не входит в [-5; 5]"
+                             requiredMessage="Введите число"
+                             converterMessage="Значение y должно быть числом"
+                            required="true">
+                <f:validateDoubleRange minimum="-5" maximum="5"/>
+
+                </h:inputText>
+                <span class="error" aria-live="polite"></span>
+
+                <h:message for="y_param" styleClass="fail"/>
+
+
+                <div id="X">
+                    Выберите X:
+                    <table class="X-values">
+                        <tr>
+                            <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotsBean.newDot.setX(-2)}" id="value-2" onclick="checkboxListener()">
+                                <f:ajax/>
+                            </h:selectBooleanCheckbox>
+                                <h:outputLabel for="value-2">-2</h:outputLabel></td>
+
+
+                            <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotsBean.newDot.setX(-1.5)}" id="value-1x5" onclick="checkboxListener()">
+                                <f:ajax/>
+                            </h:selectBooleanCheckbox>
+                                <h:outputLabel for="value-1x5">-1.5</h:outputLabel></td>
+
+                            <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotsBean.newDot.setX(-1)}" id="value-1" onclick="checkboxListener()">
+                                <f:ajax/>
+                            </h:selectBooleanCheckbox>
+                                <h:outputLabel for="value-1">-1</h:outputLabel></td>
+                        </tr>
+
+                        <tr>
+                            <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotsBean.newDot.setX(-0.5)}" id="value-21" onclick="checkboxListener()">
+                                <f:ajax/>
+                            </h:selectBooleanCheckbox>
+                                <h:outputLabel for="value-21">-0.5</h:outputLabel></td>
+
+
+                            <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotsBean.newDot.setX(0)}" id="value-1x51" onclick="checkboxListener()">
+                                <f:ajax/>
+                            </h:selectBooleanCheckbox>
+                                <h:outputLabel for="value-1x51">0</h:outputLabel></td>
+
+                            <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotsBean.newDot.setX(1)}" id="value-11" onclick="checkboxListener()">
+                                <f:ajax/>
+                            </h:selectBooleanCheckbox>
+                                <h:outputLabel for="value-11">1</h:outputLabel></td>
+                        </tr>
+
+                        <tr>
+                            <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotsBean.newDot.setX(-1)}" id="value-12" onclick="checkboxListener()">
+                                <f:ajax/>
+                            </h:selectBooleanCheckbox>
+                                <h:outputLabel for="value-12">-1</h:outputLabel></td>
+
+                            <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotsBean.newDot.setX(1.5)}" id="value-22" onclick="checkboxListener()">
+                                <f:ajax/>
+                            </h:selectBooleanCheckbox>
+                                <h:outputLabel for="value-22">1.5</h:outputLabel></td>
+
+
+                            <td><h:selectBooleanCheckbox class="pointer checkbox" valueChangeListener="#{dotsBean.newDot.setX(-1.5)}" id="value-1x52" onclick="checkboxListener()">
+                                <f:ajax/>
+                            </h:selectBooleanCheckbox>
+                                <h:outputLabel for="value-1x52">-1.5</h:outputLabel></td>
+
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+
+
+            </div>
+            <div class="buttonss">
+                <h:commandButton type="submit"
+                                 styleClass="butt"
+                                 id="check"
+                                 value="Проверить"
+                                 action="#{dotsBean.add()}">
+                </h:commandButton>
+                <h:button value="На стартовую страницу"
+                          id="to_start"
+                          styleClass="butt"
+                          outcome="to_start"
+                />
+            </div>
+
+        </h:form>
+    </div>
+
+а
+    </div>
+    <div class="result_in_table">
+        <h:form id="paginat">
+            <h:dataTable id="pagBut" value="#{dotsBean.pagBut}" var="str">
+                <h:column>
+                    <h:commandButton styleClass="#{dotsBean.getPageClass(str)}" value="#{str + 1}" action="#{dotsBean.loadStr(str)}"/>
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+
+        <h:dataTable id="table" value="#{dotsBean.dots}" var="dot" border="1">
+            <h:column>
+                <f:facet name="header">№</f:facet>
+                <h:outputText id="num" value="#{dot.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                <h:outputText id="x" value="#{dot.x}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                <h:outputText id="y" value="#{dot.y}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                <h:outputText id="r" value="#{dot.r}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Результат</f:facet>
+                <h:outputText styleClass="#{dot.resultClass}" id="result" value="#{dot.resultString}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Время</f:facet>
+                <h:outputText id="time" value="#{dot.time}"/>
+            </h:column>
+        </h:dataTable>
+
+
+<!--        загружает первую страницу-->
+        <p:remoteCommand name="checkUpdate" action="#{dotsBean.loadStartStr()}" update="table" process="@this"/>
+<!--        точку с графика на сервер-->
+        <p:remoteCommand name="addDotFromCanvas" action="#{dotsBean.addFromCanvas()}" update="table" process="@this"/>
+<!--        перерисовывает график-->
+        <p:remoteCommand name="updateCan" update="updateCanvas" process="@this"/>
+<!--        обновляет кнопки пагинации-->
+        <p:remoteCommand name="updateButtons" update="paginat"/>
+      <!--  <p:remoteCommand name="setParamR" action="#{dotsBean.newDot.setR(1)}" process="@this"/> -->
+
+    </div>
+</h:body>
+
+</html>
