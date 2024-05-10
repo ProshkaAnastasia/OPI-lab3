@@ -6,14 +6,14 @@ import java.util.List;
 
 
 public class DatabaseManager {
-   private final String url = "jdbc:postgresql://localhost:5432/studs";
-   private final String login = "s367825";
-   private final String password = "EfUM8A2KYL5Y2S8E";
-   private Connection connection;
-//    private final String url = "jdbc:postgresql://localhost:5432/kseniya";
-//    private final String login = "kseniya";
-//    private final String password = "cars0cars";
-//    private Connection connection;
+//   private final String url = "jdbc:postgresql://localhost:5432/studs";
+//   private final String login = "s367825";
+//   private final String password = "EfUM8A2KYL5Y2S8E";
+//   private Connection connection;
+    private final String url = "jdbc:postgresql://localhost:5432/kseniya";
+    private final String login = "kseniya";
+    private final String password = "cars0cars";
+    private Connection connection;
 
    private static final String ADD_DOT = "INSERT INTO dots (x, y, r ,result, owner, time) VALUES (?, ?, ?, ?, ?, ?)";
    private static final String GET_DOTS_BY_OWNER = "SELECT * FROM dots WHERE owner = ?";
